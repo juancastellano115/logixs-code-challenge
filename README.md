@@ -32,7 +32,7 @@ cursos y estudiantes, utilizando Spring Boot, Docker, Hibernate y Swagger.
 #### http://localhost:8761/
 
 ## Endpoint Rabbit Dashboard (guest:guest)
-#### http://localhost:8761/
+#### http://localhost:15672/
 
 ## Arquitectura:
 
