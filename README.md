@@ -22,12 +22,17 @@ cursos y estudiantes, utilizando Spring Boot, Docker, Hibernate y Swagger.
 
 ## Endpoints Swagger:
 
-#### *MS-COURSES*: 
+#### *MS-COURSES*: http://localhost:8081/swagger-ui/index.html#/
 
-#### *MS-STUDENTS*: 
+#### *MS-STUDENTS*: http://localhost:8082/swagger-ui/index.html#/
 
-#### *MS-REGISTRATIONS*: 
+#### *MS-REGISTRATIONS*: http://localhost:8083/swagger-ui/index.html#/
 
+## Endpoint Eureka
+#### http://localhost:8761/
+
+## Endpoint Rabbit Dashboard (guest:guest)
+#### http://localhost:8761/
 
 ## Arquitectura:
 
