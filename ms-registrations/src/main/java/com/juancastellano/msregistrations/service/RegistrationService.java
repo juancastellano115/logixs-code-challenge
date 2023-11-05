@@ -33,7 +33,7 @@ public class RegistrationService {
         return registrationRepository.findAll();
     }
 
-    public ResponseEntity<?> subscribeStudentToCourse(int studentId, int courseId) {
+    public ResponseEntity<?> subscribeStudentToCourse(Long studentId, Long courseId) {
         if (!checkCourseId(courseId)) {
             return new ResponseEntity<>("Invalid courseId", HttpStatus.BAD_REQUEST);
         }
@@ -49,7 +49,7 @@ public class RegistrationService {
         return new ResponseEntity<>(registrationRepository.save(registration), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> unsubscribeStudentFromCourse(int studentId, int courseId) {
+    public ResponseEntity<?> unsubscribeStudentFromCourse(Long studentId, Long courseId) {
         if (!checkCourseId(courseId)) {
             return new ResponseEntity<>("Invalid courseId", HttpStatus.BAD_REQUEST);
         }
@@ -68,35 +68,29 @@ public class RegistrationService {
     }
 
     @Transactional
-    public void unsubscribeAllStudentsFromCourse(int courseId) {
-        if (checkCourseId(courseId)) {
+    public void unsubscribeAllStudentsFromCourse(Long courseId) {
             registrationRepository.deleteAllByCourseId(courseId);
-        }
-
     }
 
     @Transactional
-    public void unsubscribeAllCoursesFromStudent(int studentId) {
-        if (checkStudentId(studentId)) {
-            registrationRepository.deleteAllByStudentId(studentId);
-        }
+    public void unsubscribeAllCoursesFromStudent(Long studentId) {
         registrationRepository.deleteAllByStudentId(studentId);
     }
 
-    public Boolean checkStudentHasRegistrations(int studentId) {
+    public Boolean checkStudentHasRegistrations(Long studentId) {
         return registrationRepository.findAllByStudentId(studentId).size() > 0;
     }
 
-    public Boolean checkCourseHasRegistrations(int courseId) {
+    public Boolean checkCourseHasRegistrations(Long courseId) {
         return registrationRepository.findAllByCourseId(courseId).size() > 0;
     }
 
-    private Boolean checkCourseId(int courseId) {
+    private Boolean checkCourseId(Long courseId) {
         Course course = courseClient.getCourse(courseId);
         return course != null;
     }
 
-    private Boolean checkStudentId(int studentId) {
+    private Boolean checkStudentId(Long studentId) {
         Student student = studentClient.getStudent(studentId);
         return student != null;
     }

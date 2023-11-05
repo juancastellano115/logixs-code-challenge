@@ -1,11 +1,9 @@
 package com.juancastellano.msregistrations;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,12 +34,12 @@ public class RegistrationControllerTest {
     public void testFetchRegistrations() {
         List<Registration> registrations = new ArrayList<>();
         Registration registration1 = new Registration();
-        registration1.setStudentId(1);
-        registration1.setCourseId(1);
+        registration1.setStudentId((long) 1);
+        registration1.setCourseId((long) 1);
         registrations.add(registration1);
         Registration registration2 = new Registration();
-        registration2.setStudentId(2);
-        registration2.setCourseId(2);
+        registration2.setStudentId((long) 2);
+        registration2.setCourseId((long) 2);
         registrations.add(registration2);
 
         when(registrationService.fetchRegistrations()).thenReturn(registrations);
@@ -57,26 +55,26 @@ public class RegistrationControllerTest {
 
     @Test
     public void testSubscribeStudentToCourse() {
-        Map<String, Integer> request = new HashMap<>();
-        request.put("studentId", 1);
-        request.put("courseId", 1);
+        Registration registration = new Registration();
+        registration.setStudentId((long) 1);
+        registration.setCourseId((long) 1);
 
-        when(registrationService.subscribeStudentToCourse(anyInt(), anyInt())).thenReturn(new ResponseEntity<>(HttpStatus.CREATED));
+        when(registrationService.subscribeStudentToCourse(anyLong(), anyLong())).thenReturn(new ResponseEntity<>(HttpStatus.CREATED));
 
-        ResponseEntity<?> result = registrationController.subscribeStudentToCourse(request);
+        ResponseEntity<?> result = registrationController.subscribeStudentToCourse(registration);
 
         assert(result.getStatusCode() == HttpStatus.CREATED);
     }
 
     @Test
     public void testUnsubscribeStudentFromCourse() {
-        Map<String, Integer> request = new HashMap<>();
-        request.put("studentId", 1);
-        request.put("courseId", 1);
+        Registration registration = new Registration();
+        registration.setStudentId((long) 1);
+        registration.setCourseId((long) 1);
 
-        when(registrationService.unsubscribeStudentFromCourse(anyInt(), anyInt())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+        when(registrationService.unsubscribeStudentFromCourse(anyLong(), anyLong())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
 
-        ResponseEntity<?> result = registrationController.unsubscribeStudentFromCourse(request);
+        ResponseEntity<?> result = registrationController.unsubscribeStudentFromCourse(registration);
 
         assert(result.getStatusCode() == HttpStatus.OK);
     }

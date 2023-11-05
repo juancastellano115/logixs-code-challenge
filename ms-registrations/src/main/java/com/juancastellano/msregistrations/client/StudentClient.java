@@ -9,5 +9,5 @@ import com.juancastellano.msregistrations.dto.Student;
 @FeignClient(name = "STUDENTS-SERVICE")
 public interface StudentClient {
     @GetMapping("/student/{studentId}")
-    Student getStudent(@PathVariable("studentId") int studentId);
+    Student getStudent(@PathVariable("studentId") Long studentId);
 }

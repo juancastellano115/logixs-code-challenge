@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationId implements Serializable {
-    private int studentId;
-    private int courseId;
+    private Long studentId;
+    private Long courseId;
 
 }

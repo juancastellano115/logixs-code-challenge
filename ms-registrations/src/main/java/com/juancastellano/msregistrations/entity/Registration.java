@@ -18,9 +18,9 @@ import lombok.Setter;
 public class Registration {
 
     @Id
-    private int studentId;
+    private Long studentId;
     @Id
-    private int courseId;
+    private Long courseId;
 
     @Column(nullable = false)
     private Date registrationDate = new Date();

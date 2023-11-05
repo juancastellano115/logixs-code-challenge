@@ -41,17 +41,17 @@ public class MessageConsumer {
 
             if (entityName.toUpperCase().equals(Entity.STUDENT.toString()) ) {
                 // Check if the student has any registration
-                if (registrationService.checkStudentHasRegistrations(Integer.parseInt(messageId))) {
+                if (registrationService.checkStudentHasRegistrations(Long.parseLong(messageId))) {
                     log.info("Student has registrations, unsubscribing...");
                     // If so, unsubscribe the student from all courses
-                    registrationService.unsubscribeAllCoursesFromStudent(Integer.parseInt(messageId));
+                    registrationService.unsubscribeAllCoursesFromStudent(Long.parseLong(messageId));
                 }
             } else if (entityName.toUpperCase().equals(Entity.COURSE.toString())) {
                 // Check if the course has any registration
-                if (registrationService.checkCourseHasRegistrations(Integer.parseInt(messageId))) {
+                if (registrationService.checkCourseHasRegistrations(Long.parseLong(messageId))) {
                     log.info("Course has registrations, unsubscribing...");
                     // If so, unsubscribe all students from the course
-                    registrationService.unsubscribeAllStudentsFromCourse(Integer.parseInt(messageId));
+                    registrationService.unsubscribeAllStudentsFromCourse(Long.parseLong(messageId));
                 }
             } else {
                 log.error("Invalid entity name: " + entityName);

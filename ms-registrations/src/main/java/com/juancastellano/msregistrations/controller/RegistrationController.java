@@ -1,7 +1,6 @@
 package com.juancastellano.msregistrations.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +39,9 @@ public class RegistrationController {
     @ApiResponse(responseCode = "201", description = "Created")
     @ApiResponse(responseCode = "400", description = "Bad Request")
     @PostMapping("/subscribe")
-    public ResponseEntity<?> subscribeStudentToCourse(@RequestBody Map<String, Integer> request) {
-        int studentId = request.get("studentId");
-        int courseId = request.get("courseId");
+    public ResponseEntity<?> subscribeStudentToCourse(@RequestBody Registration registration) {
+        Long studentId = registration.getStudentId();
+        Long courseId = registration.getCourseId();
         return registrationService.subscribeStudentToCourse(studentId, courseId);
     }
 
@@ -50,9 +49,9 @@ public class RegistrationController {
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "400", description = "Bad Request")
     @DeleteMapping("/unsubscribe")
-    public ResponseEntity<?> unsubscribeStudentFromCourse(@RequestBody Map<String, Integer> request) {
-        int studentId = request.get("studentId");
-        int courseId = request.get("courseId");
+    public ResponseEntity<?> unsubscribeStudentFromCourse(@RequestBody Registration registration) {
+        Long studentId = registration.getStudentId();
+        Long courseId = registration.getCourseId();
         return registrationService.unsubscribeStudentFromCourse(studentId, courseId);
     }
 
